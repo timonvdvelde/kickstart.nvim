@@ -84,6 +84,41 @@ return {
     },
   },
 
+  { -- Render markdown, useful for AI output
+    'MeanderingProgrammer/render-markdown.nvim',
+    ft = { 'markdown', 'codecompanion' },
+  },
+
+  {
+    'olimorris/codecompanion.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'ravitemer/mcphub.nvim',
+    },
+    opts = {
+      adapters = {
+        http = {
+          ollama = function()
+            return require('codecompanion.adapters').extend('ollama', {
+              env = {
+                url = 'http://192.168.2.6:11434',
+              },
+            })
+          end,
+        },
+      },
+      interactions = {
+        chat = {
+          adapter = {
+            name = 'ollama',
+            model = 'qwen3-coder:30b',
+          },
+        },
+      },
+    },
+  },
+
   -- Python autoupdate imports on file name changes
   -- Currently broken?
   -- {
