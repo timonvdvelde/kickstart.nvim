@@ -78,7 +78,7 @@ return {
       animate = { enabled = true },
       bigfile = { enabled = true },
       indent = { enabled = true },
-      notifier = { enabled = true },
+      -- notifier = { enabled = true },
       quickfile = { enabled = true },
       scroll = { enabled = true },
       scope = { enabled = true },
