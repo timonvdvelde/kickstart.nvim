@@ -578,7 +578,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
 
-        jsonls = {
+        ['json-lsp'] = {
           settings = {
             json = {
               schemas = require('schemastore').json.schemas(),
@@ -587,7 +587,7 @@ require('lazy').setup({
           },
         },
 
-        yamlls = {
+        ['yaml-language-server'] = {
           settings = {
             yaml = {
               schemaStore = {
@@ -602,7 +602,7 @@ require('lazy').setup({
           },
         },
 
-        lua_ls = {
+        ['lua-language-server'] = {
           -- cmd = { ... },
           -- filetypes = { ... },
           -- capabilities = {},
@@ -618,16 +618,6 @@ require('lazy').setup({
         },
       }
 
-      -- Now setup those configurations
-      for name, config in pairs(servers) do
-        local config = config or {}
-        -- This handles overriding only values explicitly passed
-        -- by the server configuration above. Useful when disabling
-        -- certain features of an LSP (for example, turning off formatting for ts_ls)
-        config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
-        vim.lsp.config(name, config)
-      end
-
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
@@ -637,7 +627,7 @@ require('lazy').setup({
       -- You can press `g?` for help in this menu.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'lua_ls', -- Lua Language server
+        'lua-language-server', -- Lua Language server
         'stylua', -- Used to format Lua code
         -- You can add other tools here that you want Mason to install
       })
