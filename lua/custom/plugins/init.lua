@@ -36,9 +36,7 @@ return {
   {
     'EdenEast/nightfox.nvim',
     priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'dayfox'
-    end,
+    config = function() vim.cmd.colorscheme 'dayfox' end,
   },
 
   -- Treesitter based split join
